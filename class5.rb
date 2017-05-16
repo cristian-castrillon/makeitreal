@@ -102,8 +102,9 @@ end
 
 
 class Carta
-	def initialize
-		@card
+	def initialize(suit, number)
+		@suit = suit
+		@number = number
 	end
 end
 
@@ -111,8 +112,16 @@ class Deck
 	attr_reader :mazo
 	def initialize
 		@mazo = []
-		1.upto(4) do |n|
-			1.
+		1.upto(4) do |suit|
+			1.upto(13) do |number|
+				case m
+					when 10 then @mazo << Carta.new(suit, "J")
+					when 11 then @mazo << Carta.new(suit, "Q")
+					when 12 then @mazo << Carta.new(suit, "K")
+					when 13 then @mazo << Carta.new(suit, "A")
+					else @mazo << Carta.new(suit, number)
+				end
+			end
 		end
 	end
 end
