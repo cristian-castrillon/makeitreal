@@ -72,6 +72,7 @@ end
 
 def leer_archivo file_name
 	return "Archivo no existe" unless File.exist?(file_name)
+	text = ""
 	File.open(file_name, "r") { |io| text = io.read }
 	text
 end
