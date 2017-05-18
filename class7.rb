@@ -82,7 +82,7 @@ end
 
 
 class MakeItReal
-	include Enumerator
+	include Enumerable
 
 	attr_accessor :estudiantes
 	def initialize
