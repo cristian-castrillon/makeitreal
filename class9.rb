@@ -80,7 +80,7 @@ class Mazo
 		end
 	end
 
-	def self.find(pinta, palo)
+	def self.encontrar(pinta, palo)
 		# @@cartas.find { |carta| carta == {pinta: pinta, palo: palo} }
 		find { |carta| carta == {pinta: pinta, palo: palo} }
 		# find carta == {pinta: pinta, palo: palo}
