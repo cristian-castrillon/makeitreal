@@ -82,7 +82,7 @@ post "/login" do
 	end
 	unless params[:email] == "aaa@aaaa.com" && params[:password] =="abc123"
 		@errors = [message: "Email or password does not match"]
-		return error(400, erb(:login))
+		return error(401, erb(:login))
 	end
 	redirect "/user_account/#{params[:email]}"
 end
