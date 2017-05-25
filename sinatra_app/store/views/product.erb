@@ -1,0 +1,7 @@
+<%= @product %>
+<form action="/cart" method="post">
+	<input type="hidden" name="product[name]" value="<%= @product[:name] %>">
+	<input type="hidden" name="product[price]" value="<%= @product[:price] %>">
+	<input type="hidden" name="product[currency]" value="<%= @product[:currency] %>">
+	<input type="submit">
+</form>
