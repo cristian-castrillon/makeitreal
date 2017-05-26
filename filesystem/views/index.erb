@@ -1,7 +1,12 @@
 <h2>Login Form</h2>
-
+<% if @errors %>
+	<% @errors.each do |error| %>
+		<small style="color:red"><%= error[:message] %></small>
+	<% end %>
+<% end %>
 <form action="/" method="POST">
-	<input type="email" name="email">
-	<input type="password" name="password">
+	<input type="email" name="email"><br>
+	<input type="password" name="password"><br>
+	<input type="checkbox" name="remember_me" value="true">Remember me<br>
 	<input type="submit" name="submit">
 </form>
