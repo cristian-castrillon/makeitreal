@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'holi/actualizar'
 
-  get 'holi/ver'
+  get "holi/products", as: "products"
+
+  get 'holi/ver(/:name)', to: "holi#ver", as: "products/product"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "index", to: "index#holi"
@@ -11,6 +13,6 @@ Rails.application.routes.draw do
 
   root "index#root"
 
-  get "products", to: "product#index"
+  # get "products", to: "product#index"
 
 end

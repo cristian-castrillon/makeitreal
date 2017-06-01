@@ -1,2 +1,10 @@
+<% content_for :top_bar do %>
+    <h1>This is a top bar</h1>
+<% end %>
+
 <h1>Holi#ver</h1>
-<p>Find me in app/views/holi/ver.html.erb</p>
+
+<%= render "minicart", products: @products %>
+
+<h1><%= @name %></h1>
+<%= link_to("GO TO PRODUCTS", products_path) %>
