@@ -1,0 +1,19 @@
+<h1>Estás creando un producto</h1>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @product do |f| %>
+
+<label>Name: <%= f.text_field :name %></label><br>
+<label>Sku: <%= f.text_field :sku %></label><br>
+<label>Quantity: <%= f.text_field :quantity %></label><br>
+<%= f.submit %>
+<% end %>
+
+<%= link_to("Inicio", products_path) %>
