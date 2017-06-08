@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# [
+#   {},
+#   {},
+#   {},
+#   {},
+#   {},
+#   {}
+# ].each { |product| Product.create(product) }
+
+Product.update(price: 1000)
