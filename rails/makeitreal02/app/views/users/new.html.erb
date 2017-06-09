@@ -1,0 +1,19 @@
+<h1>Estás creando un usuario</h1>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user do |f| %>
+
+<label>Username: <%= f.text_field :username %></label><br>
+<label>Email: <%= f.text_field :email %></label><br>
+<label>Password: <%= f.text_field :password %></label><br>
+<%= f.submit %>
+<% end %>
+
+<%= link_to("Inicio", users_path) %>
