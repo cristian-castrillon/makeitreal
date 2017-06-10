@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    #@products = Product.where("quantity > :qty", qty: 0)
+    #@products = Product.in_inventory
   end
 
   def new
