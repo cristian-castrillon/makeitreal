@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :orders
   has_many :addresses
+  has_many :invoices
 
   validates :email, uniqueness: true
   validates :password, length: { in: 8..16 }

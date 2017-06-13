@@ -1,0 +1,11 @@
+<%= form_for @invoice do |f| %>
+  <% if @invoice.errors[:total] %>
+    <%= @invoice.errors.full_messages %>
+  <% end %>
+
+  <%= f.number_field :total %>
+  <%= f.text_field :user_id %>
+  <%= f.text_field :order_id %>
+  <%= f.text_field :status %>
+  <%= f.submit %>
+<% end %>

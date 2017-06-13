@@ -1,0 +1,7 @@
+<%= @invoice.total %>
+<%= @invoice.status %>
+<!-- <%= @invoice.user_id %> -->
+<%= link_to(@invoice.user_id, user_path(@invoice.user_id)) %>
+<%= @invoice.order_id %>
+
+<%= link_to 'Destroy', invoice_path(@invoice), method: :delete, data: { confirm: 'Are you sure?' } %>

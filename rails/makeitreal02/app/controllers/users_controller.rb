@@ -3,6 +3,18 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecordNotFound
+      # 200 :ok
+      # 400 :bad_request
+      # 404 :not_found
+      # render :not_found
+      redirect_to(users_path)
+    end
+  end
+
   def new
     @user = User.new
   end
