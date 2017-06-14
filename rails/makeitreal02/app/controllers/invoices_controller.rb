@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   def index
     @invoices = Invoice.all
   end
@@ -9,6 +10,7 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+    @invoice.user = current_user
     if @invoice.save
       redirect_to(invoice_path(@invoice))
     else

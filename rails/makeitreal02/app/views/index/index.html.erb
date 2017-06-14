@@ -1,0 +1,37 @@
+<%= form_tag search_path, method: "get" do %>
+  <%= label_tag :email, "Email" %>
+  <%= text_field_tag :email %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
+<% if @user %>
+  <%= @user.email %> <br>
+  <% @user.orders.each do |order| %>
+    <%= order.id %>
+    <% order.products.each do |product| %>
+      <%= product.sku %>
+    <% end %>
+  <% end %>
+ <!--  <BLOCKQUOTE>
+    <h3>Products</h3>
+    <% @user.orders.each do |order| %>
+      <%= order.id %>
+      <blockquote>
+        <% order.products.each do |product| %>
+          <%= product.name %> <br>
+        <% end %>  
+      </blockquote>
+    <% end %>
+  </BLOCKQUOTE>
+
+  <blockquote>
+    <h3>Invoices</h3>
+    <% @user.invoices.each do |invoice| %>
+      <%= invoice.id %>
+      <blockquote>
+        <%= invoice.total %>
+        <%= invoice.status %>
+      </blockquote>
+    <% end %>
+  </blockquote> -->
+<% end %>
