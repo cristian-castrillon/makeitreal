@@ -1,0 +1,13 @@
+<h1>New Post</h1>
+
+<%= form_for @post, url: user_posts_path(current_user) do |f| %>
+  <div class="field">
+    <%= f.label :title, "Title" %> <br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content, "Message" %> <br>
+    <%= f.text_field :content %>
+  </div>
+  <%= f.submit "Create Post", :disable_with => "Creating..." %>
+<% end %>
