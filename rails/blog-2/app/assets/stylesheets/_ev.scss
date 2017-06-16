@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+$fuente : 'Lato', sans-serif;
+
+@mixin nombrediv($bg) {
+  
+
+  font-family: $fuente;
+  background: $bg;
+  height: 400px;
+  color: #fff;
+  text-align: center;
+}
+
+
+
+
+.miClase1 {
+  @include nombrediv(#fff);
+}
+
+.miClase2 {
+  @include nombrediv(#000); 
+}
+
+.miClase3 {
+  @include nombrediv(#bebebe);
+}
