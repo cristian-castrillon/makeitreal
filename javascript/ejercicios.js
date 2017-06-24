@@ -236,3 +236,113 @@ function PostLimitError(message) {
 }
 PostLimitError.prototype = Object.create(Error.prototype)
 PostLimitError.prototype.constructor = PostLimitError
+
+
+function Person(attrs) {
+  this.name = attrs.name
+  this.lastName = attrs.lastName
+}
+
+function User(attrs) {
+  this.username = attrs.username
+  this.password = attrs.password
+  Person.call(this, attrs)
+
+}
+User.prototype = Object.create(Person.prototype)
+User.prototype.constructor = User
+
+function Customer(attrs) {
+  this.contracts = attrs.contracts
+  User.call(this, attrs)
+}
+Customer.prototype = Object.create(User.prototype)
+Customer.prototype.constructor = Customer
+
+function Employee(attrs) {
+  this.salary = attrs.salary
+  User.call(this, attrs)
+}
+Employee.prototype = Object.create(User.prototype)
+Employee.prototype.constructor = Employee
+
+function Manager(attrs) {
+  this.subordinates = attrs.subordinates
+  Employee.call(this, attrs)
+}
+Manager.prototype = Object.create(Employee.prototype)
+Manager.prototype.constructor = Manager
+
+
+///////////////////////////////////////////////////////////////
+
+function sayHi (var1) {
+  // return 'Hi ' + var1
+  return 'Hi ' + this.name
+}
+
+function sayBye (var1) {
+  // return 'Bye ' + var1
+  return 'Bye ' + this.name
+}
+
+function sayHiAndBye (fun1, fun2, var1) {
+  // return fun1(var1) + ' ' + fun2(var1)
+  return fun1.call(var1) + ' ' + fun2.call(var1)
+}
+////////////////////////////////////
+// function forEach2 (arr, fun1) {
+//   var arr1 = arr
+//   if (arr.length > 1) {
+//     var a = arr1.pop()
+    
+//     return fun1(a, forEach2(arr1, fun1))
+//   } else {
+//    return fun1(arr1.pop())
+//   }
+  
+// }
+
+// forEach2([1, 2, 3], sum)
+
+function sum(num) {
+  return num + 1
+}
+
+function myForEach(arr, func) {
+  for (var i = 0; i < arr.length; i++) {
+    func(arr[i], i)
+  }
+}
+
+myForEach([1, 2, 3], sum)
+
+function myMap(arr, func) {
+  var tmp = []
+  myForEach(arr, function (elem) {
+    tmp.push(func(elem))
+  })
+  return tmp
+}
+
+function sumByFilter (arr, func) {
+  var sum = 0
+  arr.forEach(function(elem) {
+    if (func(elem)) {
+      sum += elem
+    }
+  })
+  return sum
+}
+
+function myFilter (arr, func) {
+  var tmp = []
+  arr.forEach(function(elem) {
+    if (func(elem)) {
+      tmp.push(elem)
+    }
+  })
+  return tmp
+}
+
+

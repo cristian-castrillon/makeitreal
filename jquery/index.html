@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1 id="test">Prueba</h1>
+    <input type="text" name="reto" placeholder="Ingresa tu texto" >
+    
+
+    <form class="form-test">
+      <label for="check1"><input type="checkbox" name="check1" value="Cerveza">Cerveza</label><br>
+      <label for="check2"><input type="checkbox" name="check2" value="Vodka">Vodka</label><br>
+      <label for="check3"><input type="checkbox" name="check3" value="Chirrinchi">Chirrinchi</label><br>
+      <label for="check4"><input type="checkbox" name="check4" value="Cherry">Cherry</label><br>
+      <label for="check5"><input type="checkbox" name="check5" value="Vino de maracuyá">Vino de maracuyá</label><br>
+      <button type="submit">Select</button>
+    </form>
+    <div class="selected"></div>
+    
+    <form class="register">
+      <input type="text" name="username" class="username" placeholder="Username"><br>
+      <input type="password" name="password" class="password" placeholder="Password"><br>
+      <input type="checkbox" name="tos"><label for="tos">Terms of Service</label><br>
+      <button type="submit" class="submit" disabled>Register</button>
+    </form>
+
+    <p class="counter"></p>
+    <button type="button" class="start">Start</button>
+    <button type="button" class="stop">Stop</button>
+    <button type="button" class="reset">Reset</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('input[name="reto"]').keyup(function () {
+          var text = $(this).val()
+          $('#test').text(text)
+        })
+        /*$('input[type="checkbox"]').change(function () {
+          if ($(this).is(':checked')) {
+            var text = $(this).val()
+            //$('.seleccionado').text(text)
+
+          }
+        })*/
+        $('.form-test').submit(function (event) {
+          event.preventDefault()
+          var selected = $('.form-test input[type="checkbox"]:checked')
+          /*
+          var list = $.map(selected, function (ele) {
+            return '<li>' + $(ele).val() + '</li>'
+          }).join('')
+          var text = '<ul>' + list + '</ul>'
+          */ 
+          var text = '<ul>'
+          selected.each(function (index, ele) {
+            text += '<li>' + $(ele).val() + '</li>'
+          })
+          text += '</ul>'
+          if ($('.selected ul').length === 0) {
+            $('.selected').append(text)
+          } else {
+            $('.selected ul').replaceWith(text)
+          }
+        })
+
+        $('.register input[type="checkbox"]').change(function () {
+          
+          if ($(this).is(':checked')) {
+            $('.register .submit').removeAttr('disabled')
+          } else {
+            $('.register .submit').attr('disabled', true)
+          }
+        })
+
+        $('.register').submit(function (event) {
+          event.preventDefault()
+          if (!($(this).find('input.username').val().trim())) {
+            alert('Ingrese Username')
+            return
+          }
+          if (!($(this).find('input.password').val().trim())) {
+            alert('Ingrese Password')
+            return
+          }
+        })
+
+        $('.start').on('click', function () {
+          var count = 0
+          myInterval = setInterval(function () {
+            $('p.counter').text(count)
+            ++count
+          },1000)
+          
+        })
+
+        $('.stop').on('click', function () {
+          clearInterval(myInterval)
+        })
+
+        $('.reset').on('click', function () {
+          $('p.counter').text('0')
+        })
+
+      })
+    </script>  
+  </body>
+</html>
