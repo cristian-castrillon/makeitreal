@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ejercicio carrito de compras</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <div>
+    <ul class="car">
+      <li class="elem"><span class="name">Coca Cola </span><span class="price">3000</span> <button type="button" class="delete">Borrar</button></li>
+      <li class="elem"><span class="name">Doritos </span><span class="price">2000</span> <button type="button" class="delete">Borrar</button></li>
+    </ul>
+    <label>Número de elementos: <p class="elements">2</p></label>
+    <label>Total<p class="total">5000</p></label>
+    <form class="add">
+      <input type="text" id="product">
+      <input type="number" id="price">
+      <button type="submit">Agregar</button>
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      
+      $('ul.car').on('click', '.delete', function () {
+        // $(this).parent().remove()
+        $(this).parent().fadeOut(300, function(){ $(this).remove(); reload() })
+        // $('p.elements').text($('ul.car li').length)
+        // var sum = 0
+        // $('ul.car li .price').each(function () {
+        //   sum += parseInt($(this).text(), 10)
+          
+        // })
+        // $('p.total').text(sum)
+        // reload()
+      })
+      $('form.add').submit(function (event) {
+        event.preventDefault()
+        // $('ul.car').append('<li class="elem"><span class="name">' + $('input#product').val() + ' </span><span class="price">' + $('input#price').val() + '</span> <button type="button" class="delete">Borrar</button></li>').hide().show('slow')
+        $('ul.car').append('<li class="elem"><span class="name">' + $('input#product').val() + ' </span><span class="price">' + $('input#price').val() + '</span> <button type="button" class="delete">Borrar</button></li>')
+        // $('p.elements').text($('ul.car li').length)
+        // var sum = 0
+        // $('ul.car li .price').each(function () {
+        //   sum += parseInt($(this).text(), 10)
+          
+        // })
+        // $('p.total').text(sum)
+        reload()
+      })
+    })
+
+    function reload() {
+      $('p.elements').text($('ul.car li').length)
+      var sum = 0
+        $('ul.car li .price').each(function () {
+          sum += parseInt($(this).text(), 10)
+          
+        })
+        $('p.total').text(sum)
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ordenes</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    function createUser() {
+      return $.ajax({
+        url: "https://reqres.in/api/users",
+        type: "POST",
+        data: {
+          username: "pepe",
+          password: "123456"
+        }
+      })
+    }
+
+    function createOrder(customer) {
+      return $.ajax({
+        url: "https://reqres.in/api/orders",
+        type: "POST",
+        data: {
+          total: 0,
+          customer: null,
+          state: "pendiente"
+        }
+      })
+    }
+
+    function addProduct(order) {
+      return $.ajax({
+        url: "https://reqres.in/api/products",
+        type: "POST",
+        data: {
+          name: "weed",
+          quantity: 10,
+          price: 2000,
+          order: order.id
+        }
+      })
+    }
+
+    function updateOrder(customer, order) {
+      return $.ajax({
+        url: "https://reqres.in/api/orders" + order.id,
+        type: "PATCH",
+        data: {
+          total: 4,
+          customer: customer.id,
+          state: "pago"
+        }
+      })
+    }
+    $(document).ready(function () {
+      var items = []
+      createUser().then(function (user) {
+        console.log(user)
+        createOrder(user).then(function (order) {
+          console.log(order)
+          // [1, 2, 3, 4].forEach(function (num) {
+          //   addProduct(order).then(function (product) {
+          //     console.log(product)
+          //   })
+          // })
+          // addProduct(order).then(function (product) {
+          //   console.log(product)
+          // })
+          for (var i = 0; i < 4; i++) {
+            addProduct(order).then(function (product) {
+              
+              items.push(product)
+              console.log(product)
+            })
+          }
+          updateOrder(user, order).then(function (order) {
+            console.log(user)
+            console.log(order)
+            console.log(items)
+          })
+        })
+      })
+    })
+  </script>
+</body>
+</html>

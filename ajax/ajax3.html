@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ajax 3</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  
+  <form id="create-user">
+    <input type="text" name="name" id="name">
+    <input type="text" name="last-name" id="last-name">
+    <input type="text" name="username" id="username">
+    <input type="password" name="password" id="password">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="show-user"></div>
+
+  <form id="update-user">
+    <input type="text" name="update-name" id="update-name">
+    <input type="text" name="update-last-name" id="update-last-name">
+    <input type="text" name="update-username" id="update-username">
+    <input type="password" name="update-password" id="update-password">
+    <button type="submit">Update</button>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    user_id = 0
+
+    function callUser(user) {
+      $.getJSON('https://randomuser.me/api', function(data) {
+        callFixer(data, user)
+      })
+    }
+
+    function callFixer(data, user) {
+      var user_picture = data.results[0]
+      $.ajax({
+        url: "https://reqres.in/api/users",
+        type: "POST",
+        data: {
+          name: user.name,
+          last_name: user.last_name,
+          username: user.username,
+          password: user.password,
+          picture: user_picture.picture.large
+        },
+        success: function (response) {
+          user_id = response.id
+          paintUser(response)
+        }
+      })
+    }
+
+    function updateUser(user) {
+      
+      $.ajax({
+        url: "https://reqres.in/api/users/" + user_id,
+        type: "PUT",
+        data: {
+          name: user.name,
+          last_name: user.last_name,
+          username: user.username,
+          password: user.password          
+        },
+        success: function (response) {
+          console.log(response)
+          getUser()
+        }
+      })
+    }
+
+    function getUser() {
+      $.getJSON("https://reqres.in/api/users/" + user_id, function(data) {
+        console.log(data)
+        paintUser(data)
+      })
+    }
+
+    function paintUser(user) {
+      var userData = '<img src=' + user.picture + ' alt=' + user.name + '>' + '<h1>' + user.name + ' ' + user.last_name + '</h1>' + '<p>' + user.username + '</p>' + '<p>' + user.password + '</p>' + '<p>' + user.id + '</p>'
+      $('#show-user').html(userData)
+    }
+
+    $(document).ready(function () {
+      // callUser()
+      $('#create-user').submit(function (event) {
+        event.preventDefault()
+        var user = {}
+        user.name = $('#name').val()
+        user.last_name = $('#last-name').val()
+        user.username = $('#username').val()
+        user.password = $('#password').val()
+        callUser(user)
+      })
+
+      $('#update-user').submit(function (event) {
+        event.preventDefault()
+        var user = {}
+        user.name = $('#update-name').val()
+        user.last_name = $('#update-last-name').val()
+        user.username = $('#update-username').val()
+        user.password = $('#update-password').val()
+        
+        updateUser(user)
+      })
+    })
+  </script>
+</body>
+</html>
