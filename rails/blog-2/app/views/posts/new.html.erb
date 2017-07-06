@@ -1,6 +1,6 @@
 <h1>New Post</h1>
 
-<%= form_for @post, url: user_posts_path(current_user) do |f| %>
+<%= form_for @post, url: user_posts_path(current_user), class: "new_post" do |f| %>
   <div class="field">
     <%= f.label :title, "Title" %> <br>
     <%= f.text_field :title %>
@@ -11,3 +11,7 @@
   </div>
   <%= f.submit "Create Post", :disable_with => "Creating..." %>
 <% end %>
+
+<script type="text/javascript">
+  new PostView()
+</script>
