@@ -1,0 +1,5 @@
+<% @post.comments.each do |comment| %>
+  <div class="panel panel-default">        
+    <div class="panel-body"><%= comment.content %></div>
+  </div>
+<% end %>

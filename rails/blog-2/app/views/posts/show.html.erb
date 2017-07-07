@@ -4,11 +4,13 @@
     <p><%= @post.content %></p>
   </div>
   <div class="row">
-    <% @post.comments.each do |comment| %>
-      <div class="panel panel-default">        
-        <div class="panel-body"><%= comment.content %></div>
-      </div>
-    <% end %>
+    <%# @post.comments.each do |comment| %>
+      <!-- <div class="panel panel-default">        
+        <div class="panel-body"><%#= comment.content %></div>
+      </div> -->
+    <%# end %>
+
+    <div class="posts"></div>
 
     <%= form_for [@post, @post.comments.build] do |f| %>
       <div class="form-group">
@@ -22,3 +24,15 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  // var comments = $('<%#= j render "comments" %>')
+  // $('.posts').append(comments)
+
+  $(document).on('turbolinks:load', function () {
+    $.ajax({
+      type: "GET",
+      contentType: "application/json; charset=utf-8",
+      url: "<%= post_comment_path(@post) %>"
+    })
+  })
+</script>
