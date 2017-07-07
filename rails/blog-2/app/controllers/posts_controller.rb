@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index] # Me autentica todos los métodos del controlador, excepto index
+  before_action :authenticate_user!, except: [:index, :show] # Me autentica todos los métodos del controlador, excepto index
 
   def index
     
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post = Post.new
     respond_to do |format|
       format.html
-      format.js
+      format.js #{ render partial: 'form', content_type: 'text/plain' }
     end
   end
 
