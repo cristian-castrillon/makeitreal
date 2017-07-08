@@ -13,6 +13,7 @@
       <%= link_to("See all posts", user_posts_path(current_user)) %>
       <%= link_to("Log Out", destroy_user_session_path, method: "delete") %>
     <% else %>
+      <%= link_to "See all posts", root_path %>
       <%= link_to("Create an account", new_user_registration_path) %>
     <% end %>
     <%= yield %>

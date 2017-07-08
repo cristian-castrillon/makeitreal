@@ -59,7 +59,7 @@
   function callFixer() {
     $.ajax({
       type: "GET",
-      contentType: "text/javascript; charset=utf-8",
+      contentType: "application/javascript",
       url: "<%= post_comments_path(@post) %>"
     })
   }

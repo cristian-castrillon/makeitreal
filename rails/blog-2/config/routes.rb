@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :posts, except: [:index] do
     resources :comments
   end
+  
+  # resources :posts, only: [:index, :show] do
+  #   resources :comments, except: [:edit, :update]
+  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "index#index"
 end

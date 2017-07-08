@@ -23,10 +23,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy
-    redirect_to(Post.find(params[:post_id]))
-    
+    # comment = Comment.find(params[:id])
+    # comment.destroy
+    # redirect_to(Post.find(params[:post_id]))
+    @post = Post.includes(:user).find params[:post_id]
+    if current_user != @post.user
+      return render json: { error: 'post does not belongs to you' }, status: :forbbiden
+    end
+    Comment.destroy params[:id]
+    head :no_content
   end
 
   private

@@ -15,6 +15,8 @@ class UsersController < ApplicationController
 
   def posts
     @posts = User.includes(:posts).find(current_user.id).posts
+    # @posts = User.find(current_user.id).posts
+    render :posts
   end
 
   def destroy
