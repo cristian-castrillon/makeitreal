@@ -1,0 +1,15 @@
+<% @post.comments.each do |comment| %>
+  <div class="panel panel-default">        
+    <div class="panel-body"><%= comment.content %>
+    <% if user_signed_in? && current_user == @post.user %>
+      <%= link_to "Borrar", post_comment_path(@post, comment), remote: true, method: 'delete', class: 'delete_comment_link' %>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('.delete_comment_link').on('ajax:success', function (event) {
+    $(this).fadeOut().remove()
+  })
+</script>

@@ -4,13 +4,15 @@
     <p><%= @post.content %></p>
   </div>
   <div class="row">
+    <h2>Comments</h2>
     <%# @post.comments.each do |comment| %>
       <!-- <div class="panel panel-default">        
-        <div class="panel-body"><%#= comment.content %></div>
+        <div class="panel-body"><%#= comment.content %> <%#= link_to "Borrar", post_comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %></div>
       </div> -->
     <%# end %>
+    
 
-    <div class="posts"></div>
+    <div class="comments"></div>
 
     <%= form_for [@post, @post.comments.build] do |f| %>
       <div class="form-group">
@@ -23,16 +25,46 @@
     <% end %>
   </div>
 </div>
+<!--
+<script type="text/javascript">  
+  function paintComments(comments) {
+    var commentData = ''
+    comments.forEach(function (comment) {
+      commentData +=  '<div class="panel panel-default"><div class="panel-body">' + comment.content + '</div></div>'      
+    })
+    $('.comments').append(commentData)
+  }
 
-<script type="text/javascript">
-  // var comments = $('<%#= j render "comments" %>')
-  // $('.posts').append(comments)
-
-  $(document).on('turbolinks:load', function () {
+  function callFixer() {
     $.ajax({
       type: "GET",
       contentType: "application/json; charset=utf-8",
-      url: "<%= post_comment_path(@post) %>"
+      url: "<%= post_comments_path(@post) %>",
+      dataType: "json",
+      success: function (response) {
+        paintComments(response)
+      }
     })
+  }
+
+  $(document).on('turbolinks:load', function () {
+    callFixer()
+  })
+</script>
+-->
+
+<script type="text/javascript">  
+  
+
+  function callFixer() {
+    $.ajax({
+      type: "GET",
+      contentType: "text/javascript; charset=utf-8",
+      url: "<%= post_comments_path(@post) %>"
+    })
+  }
+
+  $(document).on('turbolinks:load', function () {
+    callFixer()
   })
 </script>
