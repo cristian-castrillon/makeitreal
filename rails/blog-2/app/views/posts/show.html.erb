@@ -2,6 +2,12 @@
   <div class="row">
     <h1><%= @post.title %></h1>
     <p><%= @post.content %></p>
+    <% if user_signed_in? && current_user == @post.user %>
+      <%= link_to "Editar", edit_user_post_path(current_user, @post), remote: true, class: "edit" %>
+    <% end -%>
+  </div>
+  <div class="row">
+    <div class="edit-form"></div>
   </div>
   <div class="row">
     <h2>Comments</h2>
@@ -25,6 +31,19 @@
     <% end %>
   </div>
 </div>
+
+<!-- <div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="edit-form"></div>
+    </div>
+  </div>
+</div> -->
+
+
 <!--
 <script type="text/javascript">  
   function paintComments(comments) {
@@ -56,7 +75,7 @@
 <script type="text/javascript">  
   
 
-  function callFixer() {
+  function callComments() {
     $.ajax({
       type: "GET",
       contentType: "application/javascript",
@@ -64,7 +83,20 @@
     })
   }
 
+  function callEdit() {
+    $.ajax({
+      type: "GET",
+      contentType: "application/javascript",
+      url: "<%= edit_user_post_path(@post) %>"
+    })
+  }
+
+      
   $(document).on('turbolinks:load', function () {
-    callFixer()
+    callComments()
+    $('.edit').on('click', function () {
+      callEdit()
+
+    })
   })
 </script>

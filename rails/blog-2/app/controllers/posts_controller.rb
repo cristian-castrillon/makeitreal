@@ -28,7 +28,16 @@ class PostsController < ApplicationController
   end
 
   def edit
-    
+    @post = Post.find(params[:id])
+    if @post.user == current_user
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      render :show
+    end
+
   end
 
   def show
@@ -36,7 +45,13 @@ class PostsController < ApplicationController
   end
 
   def update
-    
+    post = Post.find(params[:id])
+    if post.update(post_params)
+      # redirect_to(posts_path, notice: 'El producto ha sido modificado con éxito')
+      redirect_to(user_post_path(post))
+    else
+      render :edit
+    end
   end
 
   def destroy

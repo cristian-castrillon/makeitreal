@@ -1,6 +1,7 @@
 <h1>New Post</h1>
 
-<%= form_for @post, url: user_posts_path(current_user), class: "new_post" do |f| %>
+<%#= form_for @post, url: user_posts_path(current_user), class: "new_post" do |f| %>
+<%= form_for @post, class: "new_post" do |f| %>
   <div class="field">
     <%= f.label :title, "Title" %> <br>
     <%= f.text_field :title %>
