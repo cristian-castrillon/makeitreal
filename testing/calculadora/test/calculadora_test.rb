@@ -32,7 +32,32 @@ class CalculadoraTest < Minitest::Test
     end
   end
 
-  def test_it_should_compute_map
+  # def test_it_should_compute_math
     
+  # end
+
+  def test_it_sumatory_of_array_1
+    sumatoria = Calculadora.sumatory([])
+    assert_equal sumatoria, 0
+  end
+
+  def test_it_sumatory_of_array_2
+    sumatoria = Calculadora.sumatory([1, 2, 3, 4])
+    assert_equal sumatoria, 10
+  end
+
+  def test_it_sumatory_of_array_3
+    sumatoria = Calculadora.sumatory([-1, -2, -3, -4])
+    assert_equal sumatoria, -10
+  end
+
+  def test_it_sumatory_of_array_4
+    sumatoria = Calculadora.sumatory([1, -2, 3, -4])
+    assert_equal sumatoria, -2
+  end
+
+  def test_it_sumatory_of_array_5
+    sumatoria = Calculadora.sumatory(["1", 2, "4", "-5"])
+    assert_equal sumatoria, 2
   end
 end

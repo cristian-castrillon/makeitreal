@@ -9,11 +9,18 @@ module Calculadora
     num1 * num2
   end
 
-  def div(num1, num2)
+  def self.div(num1, num2)
     num1 / num2
   end
 
   def self.math(num1, num2, num3)
     sum(times(num1, num2), num3)
+  end
+
+  def self.sumatory(arr)
+    sum = 0
+    arr.each { |num| sum += num.to_i }
+    sum
+    # arr.map(&:to_i)reduce(:+) || 0
   end
 end
