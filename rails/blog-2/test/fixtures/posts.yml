@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  content: MyString
-  user: one
+hola_mundo:
+  title: 'Hola Testing'
+  content: 'este es un post sobre testing y TDD'
+  user: cristian
 
-two:
-  title: MyString
-  content: MyString
-  user: two
+chao_mundo:
+  title: 'Chao Testing'
+  content: 'Otro post de testing'
+  user: simon
