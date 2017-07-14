@@ -1,6 +1,7 @@
 <% @post.comments.each do |comment| %>
   <div class="panel panel-default">        
-    <div class="panel-body"><%= comment.content %>
+    <div class="panel-body">
+    <p><%= comment.content %></p>
     <% if user_signed_in? && current_user == @post.user %>
       <%= link_to "Borrar", post_comment_path(@post, comment), remote: true, method: 'DELETE', class: 'delete_comment_link' %>
     <% end %>

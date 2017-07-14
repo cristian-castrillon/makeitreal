@@ -27,6 +27,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def edit
     @post = Post.find(params[:id])
     if @post.user == current_user
@@ -40,15 +44,15 @@ class PostsController < ApplicationController
 
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
-
   def update
     post = Post.find(params[:id])
+    unless current_user == post.user
+      # redirect_to(user_posts_path(current_user))
+      return :forbidden
+    end
     if post.update(post_params)
       # redirect_to(posts_path, notice: 'El producto ha sido modificado con éxito')
-      redirect_to(user_post_path(post))
+      redirect_to(user_post_path(post.user, post))
     else
       render :edit
     end
