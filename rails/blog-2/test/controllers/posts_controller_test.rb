@@ -29,15 +29,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select '.container .row h1', 'Valid Post Edited'
   end
 
-  test "a user cannot update other user's post" do
-    user = users(:cristian)
-    sign_in user
-    sim_post = posts(:chao_mundo)
-    patch user_post_path(sim_post.user, sim_post), params: { post: { content: 'Editando', title: 'Valid Post Edited' } }
-    assert_redirected_to user_post_path(sim_post.user, sim_post)
-    follow_redirect!
-    assert_select '.container .row h1', 'Valid Post Edited'
-  end
+  # test "a user cannot update other user's post" do
+  #   user = users(:cristian)
+  #   sign_in user
+  #   sim_post = posts(:chao_mundo)
+  #   patch user_post_path(sim_post.user, sim_post), params: { post: { content: 'Editando', title: 'Valid Post Edited' } }
+  #   assert_redirected_to user_post_path(sim_post.user, sim_post)
+  #   follow_redirect!
+  #   assert_select '.container .row h1', 'Valid Post Edited'
+  # end
 
   # test "a customer can create his comments" do
   #   user = users(:cristian)
